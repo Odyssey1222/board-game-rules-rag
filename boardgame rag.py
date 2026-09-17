@@ -10,7 +10,7 @@ import faiss
 import jieba
 import numpy as np
 from rank_bm25 import BM25Okapi
-def sliding_window_chunking(text, chunk_size=200, overlap=50):
+def sliding_window_chunking(text, chunk_size=200, overlap=80):
     """
     对长文本进行带重叠的滑动窗口切片
     
@@ -27,8 +27,6 @@ def sliding_window_chunking(text, chunk_size=200, overlap=50):
     
     # 步长 = 块长度 - 重叠长度
     step = chunk_size - overlap
-    
-    # 防止步长小于等于0导致死循环
     if step <= 0:
         raise ValueError("overlap 必须小于 chunk_size")
         
